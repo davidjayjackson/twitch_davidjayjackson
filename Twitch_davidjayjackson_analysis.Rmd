@@ -1,0 +1,46 @@
+---
+title: 'TwitchR: David Jackson'
+author: "David Jackson"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+library(scales)
+library(twitchr)
+```
+
+## R Markdown
+
+```{r}
+twitch_auth(
+  client_id = Sys.getenv("TWITCH_CLIENT_ID"),
+  client_secret = Sys.getenv("TWITCH_SECRET")
+)
+```
+
+```{r}
+user <- get_users(login = "davidjayjackson")
+```
+
+### Get Follow Info
+
+```{r}
+followers <- get_follows(to_id = user$id)
+```
+```{r}
+followers$data
+```
+```{r}
+get_all_stream_tags()
+```
+
+
+
+```{r}
+get_chatters("davidjayjackson")
+```
+
